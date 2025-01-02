@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentorship Platform</title>
+    <title>Mentee</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -14,7 +14,8 @@
             <img src="mentee-high-resolution-logo.png" alt="Mentorship Logo">
         </div>
         <nav>
-            <ul>
+            <button id="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+            <ul id="menu">
                 <li>
                     <a href="#">Home</a>
                     <ul class="dropdown">
@@ -33,19 +34,19 @@
                 <li>
                     <a href="#">Mentors</a>
                     <ul class="dropdown">
-                    <li><a href="#">All Mentors</a></li>
-                    <li><a href="#">Become a Mentor</a></li>
-                    <li><a href="#">Contact a Mentor</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-                <ul class="dropdown">
-                    <li><a href="https://mentee.jecrc@gmail.com">Email Us</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
-            </li>
+                        <li><a href="#">All Mentors</a></li>
+                        <li><a href="#">Become a Mentor</a></li>
+                        <li><a href="#">Contact a Mentor</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                    <ul class="dropdown">
+                        <li><a href="mailto:mentee.jecrc@gmail.com">Email Us</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
@@ -73,29 +74,44 @@
                     <p>Career Counselor</p>
                     <button class="chat-btn" onclick="openChat()">Chat</button>
                 </div>
-                <!-- Add more mentor cards here -->
             </div>
         </section>
     </main>
 
-    <!-- Background overlay -->
-<div id="overlay" onclick="closeChat()"></div>
+    <!-- Chat Box -->
+    <div id="overlay" onclick="closeChat()"></div>
+    <div id="chat-box" class="chat-box">
+        <div class="chat-header">
+            <h4>Chat with Mentor</h4>
+            <button class="close-btn" onclick="closeChat()">X</button>
+        </div>
+        <div class="chat-body">
+            <p>Hello! How can I assist you today?</p>
+        </div>
+        <div class="chat-footer">
+            <input type="text" placeholder="Send a message...">
+            <button>Send</button>
+        </div>
+    </div>
 
-<!-- Chat Box -->
-<div id="chat-box" class="chat-box">
-    <div class="chat-header">
-        <h4>Chat with Mentor</h4>
-        <button class="close-btn" onclick="closeChat()">X</button>
-    </div>
-    <div class="chat-body">
-        <p>Hello! How can I assist you today?</p>
-    </div>
-    <div class="chat-footer">
-        <input type="text" placeholder="Send a message...">
-        <button>Send</button>
-    </div>
-</div>
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
 
-    <script src="script.js"></script>
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+
+        function openChat() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('chat-box').style.display = 'flex';
+        }
+
+        function closeChat() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('chat-box').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
